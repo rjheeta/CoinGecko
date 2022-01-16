@@ -8,7 +8,7 @@ use v5.18;
 
 our $VERSION = '1.0';
 our $API_VERSION = 'v3';
-our $DEBUG = 1;
+our $DEBUG = 0;
 
 my $_ua = LWP::UserAgent->new( agent => 'Mozilla/5.0' );
 my $_base_url = "https://api.coingecko.com/api/$API_VERSION/";
@@ -387,3 +387,193 @@ sub get_companies_public_treasury {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Crypto::CoinGecko - A wrapper for CoinGecko V3 API
+
+=head1 DESCRIPTION
+
+Refer to the documentation on CoinGecko website (https://www.coingecko.com/api/docs/v3)
+
+Example usage:
+
+    my $cg = Crypto::CoinGecko->new();
+    my $r = $cg->get_simple_price("ethereum", "usd");
+    Print ("The current price of ETH is: " . $r->{ethereum}->{usd});
+
+=head1 METHODS
+
+=head2 ping
+
+Check API server status
+
+=head2 get_simple_price
+
+Get the current price of any cryptocurrencies in any other supported currencies that you need
+
+    my $r = $cg->get_simple_price("ethereum", "usd");
+    Print ("The current price of ETH is: " . $r->{ethereum}->{usd});
+
+=head2 get_simple_token_price_by_id
+
+Get current price of tokens (using contract addresses) for a given platform in any other currency that you need
+
+=head2 get_simple_supported_vs_currencies
+
+Get list of supported_vs_currencies
+
+=head2 get_coins_list
+
+List all supported coins id, name and symbol (no pagination required
+
+=head2 get_coins_markets();
+
+List all supported coins price, market cap, volume, and market related data
+
+=head2 get_coin_by_id;
+
+Get current data (name, price, market, ... including exchange tickers) for a coin
+
+=head2 get_coin_tickers_by_id
+
+Get coin tickers (paginated to 100 items)
+
+=head2 get_coin_history_by_id
+
+Get historical data (name, price, market, stats) at a given date for a coin
+
+=head2 get_coin_market_chart_by_id
+
+Get historical market data include price, market cap, and 24h volume. See API docs for granularity
+
+=head2 get_coin_market_chart_range_by_id
+
+Get historical market data include price, market cap, and 24h volume within a range of timestamp. See API docs for granularity
+
+=head2 get_coin_status_updates_by_id
+
+Get status updates for a given coin (beta)
+
+=head2 get_coin_ohlc_by_id
+
+Get coin's OHLC
+
+=head2 get_coin_info_from_contract_address_by_id
+
+Get coin info from contract address
+
+=head2 get_coin_market_chart_from_contract_address_by_id
+
+Get historical market data include price, market cap, and 24h volume from a contract address. See API docs for granularity
+
+=head2 get_coin_market_chart_range_from_contract_by_id
+
+Get historical market data include price, market cap, and 24h volume within a range of timestamp from a contract address. See API docs for granularity
+
+=head2 get_asset_platforms
+
+List all asset platforms (Blockchain networks)
+
+=head2 get_coins_categories_list
+
+List all categories
+
+=head2 get_coins_categories
+
+List all categories with market data
+
+=head2 get_exchanges
+
+List all exchanges
+
+=head2 get_exchanges_list
+
+List all supported markets id and name (no pagination required)
+
+=head2 get_exchange_volume_by_id
+
+Get exchange volume in BTC and top 100 tickers only
+
+=head2 get_exchange_tickers_by_id
+
+Get exchange tickers (paginated, 100 tickers per page)
+
+=head2 get_exchange_status_updates_by_id
+
+Get status updates for a given exchange (beta)
+
+=head2 get_exchange_volume_chart_by_id
+
+Get volume_chart data for a given exchange (beta)
+
+=head2 get_finance_platforms
+
+List all finance platforms
+
+=head2 get_finance_products
+
+List all finance products
+
+=head2 get_indexes
+
+List all market indexes
+
+=head2 get_indexes_by_market_id_and_index_id
+
+Get market index by market id and index id
+
+=head2 get_indexes_list
+
+List market indexes id and name
+
+=head2 get_derivatives
+
+List all derivative tickers
+
+=head2 get_derivatives_exchanges
+
+List all derivative exchanges
+
+=head2 get_derivatives_exchanges_by_id
+
+Show derivative exchange data
+
+=head2 get_derivatives_exchanges_list
+
+List all derivative exchanges name and identifier
+
+=head2 get_status_updates
+
+List all status_updates with data (description, category, created_at, user, user_title and pin)
+
+=head2 get_exchange_rates
+
+Get BTC-to-Currency exchange rates
+
+=head2 get_search_trending
+
+Get trending search coins (Top-7) on CoinGecko in the last 24 hours
+
+=head2 get_global
+
+Get cryptocurrency global data
+
+=head2 get_global_decentralized_finance_defi
+
+Get cryptocurrency global decentralized finance (defi) data
+
+=head2 get_companies_public_treasury
+
+Get public companies data
+
+=head1 AUTHOR
+
+Randy J
+
+=head1 LICENSE
+
+MIT
+
+=cut
